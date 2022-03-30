@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <p>現在{{ number }}クリックされています</p>
+    <button v-on:click="countUp(2)">カウントアップ</button>
+    <!-- 省略記法 @-->
+    <button @click="countUp(2)">カウントアップ@@</button>
+    <p v-on:mousemove="changeMousePosition(2, $event)">
+      マウスポジション
+      <span v-on:mousemove="noEvent">反応しないでね</span><br>
+      <!-- 上記と同じ イベント修飾子-->
+      <span v-on:mousemove.stop>反応しないでね2222</span>
+    </p>
+    <a v-on:click="noLink" href="https://google.com">Google</a>
+    <!-- 上記と同じ意味　イベント修飾子 -->
+    <a v-on:click.prevent href="https://google.com">Google2</a>
+    <p>X:{{x}}、 Y: {{y}}</p>
+
+    <!-- キー修飾子 -->
+    <input type="text" v-on:keyup.enter.space="myAlert">
+
+    <!-- v-onディレクティブを動的にする-->
+    <button v-on:[event]="countUp(2)">カウントアップ2</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        number: 0,
+        x: 0,
+        y: 0,
+        event: 'click'
+      },
+      methods: {
+        countUp: function(times){
+          this.number += 1 * times
+        },
+        changeMousePosition: function(divNum, event){
+          this.x = event.clientX / divNum;
+          this.y = event.clientY / divNum;
+        },
+        noEvent: function(event) {
+          // eventを止める時
+          event.stopPropagation();
+        },
+        noLink: function(event) {
+          event.preventDefault();
+        },
+        myAlert: function() {
+          alert('enter押した！！')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

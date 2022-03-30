@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!--重要-->
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <a v-bind:href="url">Google</a>
+    <!-- 省略可 -->
+    <a :href="url">Google1</a>
+
+    <a :[attribute]="url">Google2</a>
+    <a :href="urlTwitter" :id="number">Twitter</a>
+    <!-- 上記をObjectに入れる -->
+    <a v-bind="twitterObject" >Twitter2</a>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        url: 'https://google.com',
+        urlTwitter: 'https://twitter.com',
+        number: 31,
+        attribute: 'href',
+        twitterObject: {
+          href: 'https://twitter.com',
+          id: 32
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
