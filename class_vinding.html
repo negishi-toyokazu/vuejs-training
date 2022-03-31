@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  .red { 
+    color: red;
+  }
+
+  .bg-blue {
+    background-color: blue;
+  }
+</style>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <h1 :class="classObj">Hello</h1>
+    <button @click="isActive = !isActive">色切り替え</button>
+
+    <h1 :class="[{red: isActive}, bg]">Hello2</h1>
+  </div>
+
+  <!-- 動的なものを表現するcomputed-->
+  <!-- methodは画面描画されるごとに毎回実行される computedは参照先の値が変わった時のみ実行される -->
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        isActive : true,
+        color: 'red',
+        bg: 'bg-blue'
+      },
+      computed: {
+        classObj: function() {
+          return {
+            red: this.isActive, 
+            'bg-blue': !this.isActive
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

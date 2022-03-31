@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <p>{{ counter }}</p>
+    <button @click="counter += 1">+1</button>
+    <p>{{ lessThanThree }}</p>
+  </div>
+
+  <!-- 動的なものを表現するcomputed-->
+  <!-- methodは画面描画されるごとに毎回実行される computedは参照先の値が変わった時のみ実行される -->
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      computed: {
+        lessThanThree: function() {
+          return this.counter > 3 ? '3より上' : '３より下'
+        }
+      },
+      watch: {
+        //watchは非同期処理をよく書く
+        counter: function () {
+          var vm = this;
+          setTimeout(function(){
+            vm.counter = 0
+          }, 3000)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

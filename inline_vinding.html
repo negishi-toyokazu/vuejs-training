@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <h1 :style="[styleObj, baseStyle]">Hello</h1>
+  </div>
+
+  <!-- 動的なものを表現するcomputed-->
+  <!-- methodは画面描画されるごとに毎回実行される computedは参照先の値が変わった時のみ実行される -->
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        styleObj: {
+          color: 'orange', 
+          'background-color': 'green'
+        },
+        baseStyle: {
+          fontSize: '60px'
+        },
+
+        textColor: 'red',
+        bgColor: 'aqua'
+      },
+    })
+  </script>
+</body>
+
+</html>

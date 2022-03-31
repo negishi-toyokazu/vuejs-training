@@ -12,14 +12,15 @@
   <script src="vue.js"></script>
 
   <div id="app">
-    <p>現在{{ number }}クリックされています</p>
+    <input type="text" v-model="message">
+    <p>{{ message }}</p>
   </div>
 
   <script>
     new Vue({
       el: '#app',
       data: {
-        event: 'click'
+        message: 'こんばんは!!'
       },
     })
   </script>
