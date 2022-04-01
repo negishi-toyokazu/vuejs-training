@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="vue.js"></script>
+
+  <div id="app">
+    <!-- 配列 -->
+    <ul>
+      <li v-for="(fruit, index) in fruits">({{index}}) {{ fruit }}</li>
+      <!-- ofでもOK -->
+      <li v-for="(fruit, index) of fruits">({{index}}) {{ fruit }}</li>
+    </ul>
+    <!-- object -->
+    <ul>
+      <li v-for="(val, key, index) in object">index: {{index}}/key:{{key}}/val:{{val}}</li>
+    </ul>
+    <ul>
+      <template v-for="fruit in fruits">
+        <li>{{ fruit }}</li>
+        <hr>
+      </template>
+    </ul>
+    <!-- 整数値 -->
+    <ul>
+      <li v-for="n in 10">{{ n }}</li>
+    </ul>
+    <!-- バグを起こさないようにkey属性（一意）をつけるようにする -->
+    <ul>
+      <div v-for="fruit in fruits" v-bind:key="fruit">
+        <p>{{fruit}}</p>
+        <input type="text">
+      </div>
+    </ul>
+    <button @click="remove">先頭を削除</button>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        fruits: ['りんご', 'ばなな','みかん'],
+        object: {
+          firstName: '二郎',
+          lastName: '山田',
+          age: 22
+        }
+      },
+      methods: {
+        remove: function() {
+          this.fruits.shift();
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
